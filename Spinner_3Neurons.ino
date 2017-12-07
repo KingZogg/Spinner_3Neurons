@@ -73,7 +73,7 @@ void buttonstate() {
 	// compare the buttonState to its previous state
 	if (buttonState != lastButtonState) {
 		// if the state has changed, increment the counter
-		if (buttonState == HIGH) {
+		if (buttonState == LOW) {
 			// if the current state is HIGH then the button went from off to on:
 			buttonPushCounter++;
 			Serial.println("on");
@@ -85,7 +85,7 @@ void buttonstate() {
 			Serial.println("off");
 		}
 		// Delay a little bit to avoid bouncing
-		delay(50);
+		delay(10);
 	}
 	// save the current state as the last state, for next time through the loop
 	lastButtonState = buttonState;
@@ -94,11 +94,12 @@ void buttonstate() {
 	// turns on the LED every four button pushes by checking the modulo of the
 	// button push counter. the modulo function gives you the remainder of the
 	// division of two numbers:
-	if (buttonPushCounter % 1 == 0) {
-		Dir = Dir;
+	
+	if (buttonState == LOW) {
+		Dir = !Dir;
 	}
 	else {
-		Dir = !Dir;
+		Dir = Dir;
 	}
 
 }
