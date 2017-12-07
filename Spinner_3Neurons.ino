@@ -14,7 +14,8 @@ int Guide2 = 6;       // Guide 2 - G2 pin of 2-guide Dekatron
 int Index = 7;        // Index   - NDX input pin. High when glow at K0
 boolean Dir = false;  // Direction Flag, true for clockwise
 int Ndx = 0;          // K0 index indicator variable
-long Acceleration = 0;
+int Acceleration = 0;
+int MillsCounter = 0;
 
 // Dekatron Stepper
 void G_step(int CINT)
@@ -52,6 +53,7 @@ void setup() {
 	G_step(D_count);
 	digitalWrite(LED, LOW);
 	Acceleration = 0;
+	MillsCounter = 0;
 }
 
 // the loop function runs over and over again forever
@@ -63,7 +65,7 @@ void loop() {
 	{
 		state = 1;						// then, set to state 1 to ignore Ndx for 5mS        
 		i_count = 0;					// clr ignore counter (i_count)       
-		//Dir = !Dir;					// flip direction (Dir)
+		 Dir = !Dir;					// flip direction (Dir)
 
 	}
 	if (Dir)
@@ -81,10 +83,21 @@ void loop() {
 		state = 0;
 		//digitalWrite(LED, LOW);  
 	}
+	
+	
+	if (MillsCounter >= 1000)
+	{
+		MillsCounter = 0;
+		Acceleration = 0;
+	}
+	MillsCounter++;
+	
 	delay(Acceleration);
-	if (Ndx)Acceleration = Acceleration + pow(1, i_count);
-	if (Acceleration > 50) Acceleration = 1;
-	Serial.println(Acceleration);
+	if (Ndx)Acceleration = Acceleration + pow(1, D_count);
+	
+	//if (Acceleration > 35) Acceleration = 1;
+	//Serial.println(Acceleration);
+	Serial.println(MillsCounter);
 	if (D_count > 2) D_count = 0;
 	if (D_count < 0) D_count = 2;
 	G_step(D_count);					// Step Dekatron
