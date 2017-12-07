@@ -1,5 +1,5 @@
 /*
-Dekatron Spinner - Variable Rate
+Dekatron Spinner - Variable Rate....
 
 modified March 25, 2017
 by Michael Moorrees
@@ -12,7 +12,7 @@ int LED = 13;         // Test LED
 int Guide1 = 5;       // Guide 1 - G1 pin of 2-guide Dekatron
 int Guide2 = 6;       // Guide 2 - G2 pin of 2-guide Dekatron
 int Index = 7;       // Index   - NDX input pin. High when glow at K0
-int Ndx = 0;          // K0 index indicator variable
+int Ndx = 0;          // K0 index indicator variable.
 
 void G_step(int CINT) // Dekatron Stepper
 {
