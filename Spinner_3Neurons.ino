@@ -63,7 +63,7 @@ void loop() {
 	{
 		state = 1;						// then, set to state 1 to ignore Ndx for 5mS        
 		i_count = 0;					// clr ignore counter (i_count)       
-		Dir = !Dir;					// flip direction (Dir)
+		//Dir = !Dir;					// flip direction (Dir)
 
 	}
 	if (Dir)
@@ -83,7 +83,7 @@ void loop() {
 	}
 	delay(Acceleration);
 	if (Ndx)Acceleration = Acceleration + pow(1, i_count);
-	if (Acceleration > 10000) Acceleration = 1;
+	if (Acceleration > 50) Acceleration = 1;
 	Serial.println(Acceleration);
 	if (D_count > 2) D_count = 0;
 	if (D_count < 0) D_count = 2;
