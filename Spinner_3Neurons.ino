@@ -92,10 +92,12 @@ void loop() {
 	}
 	Counter++;
 
+	//delay(1000); //Uncomment this to just count seconds.
 	delay(Acceleration);
+	
 	if (Ndx)Acceleration = Acceleration + pow(1, Acceleration);
 	//if (Ndx)Acceleration = Acceleration + pow(2, Acceleration);
-
+	//A101 Dec has 64 cathodes ?
 	
 	//Serial.println(Acceleration);
 	Serial.println(Counter);
