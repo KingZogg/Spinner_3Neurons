@@ -63,7 +63,7 @@ void loop() {
 	{
 		state = 1;						// then, set to state 1 to ignore Ndx for 5mS        
 		i_count = 0;					// clr ignore counter (i_count)       
-										//Dir = !Dir;					// flip direction (Dir)
+		Dir = !Dir;					// flip direction (Dir)
 
 	}
 	if (Dir)
@@ -82,7 +82,7 @@ void loop() {
 		//digitalWrite(LED, LOW);  
 	}
 	delay(DelayRamp);
-	if (Ndx)DelayRamp = DelayRamp + 1000;
+	if (Ndx)DelayRamp = DelayRamp + 10;
 	if (DelayRamp > 10000) DelayRamp = 1;
 	Serial.println(DelayRamp);
 	if (D_count > 2) D_count = 0;
