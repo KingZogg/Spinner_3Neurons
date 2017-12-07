@@ -17,6 +17,12 @@ int Ndx = 0;          // K0 index indicator variable
 int Acceleration = 0;
 int Counter = 0;
 
+const int  buttonPin = 10;    // the pin that the pushbutton is attached to
+int buttonPushCounter = 0;   // counter for the number of button presses
+int buttonState = 0;         // current state of the button
+int lastButtonState = 0;     // previous state of the button
+
+
 // Dekatron Stepper
 void G_step(int CINT)
 {
@@ -45,6 +51,9 @@ void setup() {
 	pinMode(Index, INPUT);
 	pinMode(LED, OUTPUT);
 
+	// initialize the button pin as a input:
+	pinMode(buttonPin, INPUT_PULLUP);
+
 	D_count = 0;
 	i_count = 0;
 	state = 0;
@@ -56,6 +65,44 @@ void setup() {
 	Counter = 0;
 }
 
+
+void buttonstate() {
+	// read the pushbutton input pin:
+	buttonState = digitalRead(buttonPin);
+
+	// compare the buttonState to its previous state
+	if (buttonState != lastButtonState) {
+		// if the state has changed, increment the counter
+		if (buttonState == HIGH) {
+			// if the current state is HIGH then the button went from off to on:
+			buttonPushCounter++;
+			Serial.println("on");
+			Serial.print("number of button pushes: ");
+			Serial.println(buttonPushCounter);
+		}
+		else {
+			// if the current state is LOW then the button went from on to off:
+			Serial.println("off");
+		}
+		// Delay a little bit to avoid bouncing
+		delay(50);
+	}
+	// save the current state as the last state, for next time through the loop
+	lastButtonState = buttonState;
+
+
+	// turns on the LED every four button pushes by checking the modulo of the
+	// button push counter. the modulo function gives you the remainder of the
+	// division of two numbers:
+	if (buttonPushCounter % 1 == 0) {
+		Dir = Dir;
+	}
+	else {
+		Dir = !Dir;
+	}
+
+}
+
 // the loop function runs over and over again forever
 void loop() {
 	Ndx = digitalRead(Index);			// Sample for glow at K0
@@ -65,7 +112,9 @@ void loop() {
 	{
 		state = 1;						// then, set to state 1 to ignore Ndx for 5mS        
 		i_count = 0;					// clr ignore counter (i_count)       
-		Dir = !Dir;					// flip direction (Dir)
+		//Dir = !Dir;					// flip direction (Dir)
+		buttonstate();
+		;
 
 	}
 	if (Dir)
