@@ -58,7 +58,7 @@ void setup() {
 }
 
 
-void buttonstate() {
+int buttonstate() {
 	// read the pushbutton input pin:
 	buttonState = digitalRead(buttonPin);
 
@@ -88,13 +88,9 @@ void buttonstate() {
 	// division of two numbers:
 	
 	//if (buttonPushCounter % 2 == 0)
-	if (buttonPushCounter == 1) {
-		Dir = !Dir;
-	}
-	else {
-		Dir = Dir;
-	}
-	buttonPushCounter = 0;
+	
+
+	return buttonPushCounter;
 }
 
 // the loop function runs over and over again forever
@@ -113,7 +109,13 @@ void loop() {
 		i_count = 0;					// clr ignore counter (i_count)       
 		//Dir = !Dir;					// flip direction (Dir)
 		
-		;
+	if (buttonPushCounter == 1) {
+			Dir = Dir;
+		}
+		else {
+			Dir = !Dir;
+			buttonPushCounter = 0;
+		}
 
 	}
 	if (Dir)
