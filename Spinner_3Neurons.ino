@@ -87,17 +87,23 @@ void buttonstate() {
 	// button push counter. the modulo function gives you the remainder of the
 	// division of two numbers:
 	
-	if (buttonState == LOW) {
+	//if (buttonPushCounter % 2 == 0)
+	if (buttonPushCounter == 1) {
 		Dir = !Dir;
 	}
 	else {
 		Dir = Dir;
 	}
-
+	buttonPushCounter = 0;
 }
 
 // the loop function runs over and over again forever
 void loop() {
+	
+	
+	
+	buttonstate();
+	
 	Ndx = digitalRead(Index);			// Sample for glow at K0
 	if (Ndx) digitalWrite(LED, HIGH);
 	if (!Ndx) digitalWrite(LED, LOW);
@@ -106,7 +112,7 @@ void loop() {
 		state = 1;						// then, set to state 1 to ignore Ndx for 5mS        
 		i_count = 0;					// clr ignore counter (i_count)       
 		//Dir = !Dir;					// flip direction (Dir)
-		buttonstate();
+		
 		;
 
 	}
