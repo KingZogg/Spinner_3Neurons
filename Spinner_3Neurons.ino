@@ -54,15 +54,7 @@ void setup() {
 	// initialize the button pin as a input:
 	pinMode(buttonPin, INPUT_PULLUP);
 
-	D_count = 0;
-	i_count = 0;
-	state = 0;
-	Ndx = 0;
-	Dir = true;
-	G_step(D_count);
-	digitalWrite(LED, LOW);
-	Acceleration = 0;
-	Counter = 0;
+	
 }
 
 
