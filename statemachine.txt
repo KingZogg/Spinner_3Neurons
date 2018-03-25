@@ -1,0 +1,72 @@
+#include<SD.h>
+
+enum States { initialize, logging, paused };
+States currentState = initialize;
+
+uint8_t lastButtonState;
+const uint8_t button_in = 3;
+volatile bool mpuInterrupt = false;
+bool dmpReady = false;
+File myFile;
+
+void setup() {
+	Serial.begin(57600);
+	//
+	// Setup your hardware, interrupts, etc. here
+	//
+
+	// Start the SD system, but don't open a file yet. Will do that in initialize state
+	if (!SD.begin(4)) {
+		Serial.println("SD initialization failed");
+		while (1) {}
+	}
+
+	pinMode(button_in, INPUT_PULLUP);
+	lastButtonState = digitalRead(button_in);
+
+}
+
+void loop() {
+	uint8_t currentButtonState = digitalRead(button_in);
+
+	switch (currentState) {
+	case initialize:
+		myFile = SD.open("Use a unique filename here every time", FILE_WRITE);
+		currentState = logging;
+		break;
+
+	case logging:
+		if (dmpReady) {
+			mpuInterrupt = false;
+			//
+			// process sensor data here, log to file, print to Serial, etc.
+			//
+		}
+
+		if (currentButtonState != lastButtonState) {
+			if (currentButtonState == LOW) {
+				currentState = paused;
+				//
+				// close the SD card file here, print results summary, etc.
+				//
+			}
+		}
+		break;
+
+	case paused:
+		// Don't do anything unless button is pushed again
+		if (currentButtonState != lastButtonState) {
+			if (currentButtonState == LOW) {
+				currentState = initialize;
+			}
+		}
+		break;
+
+	default:
+		break;
+	}
+
+	lastButtonState = currentButtonState;
+
+	// You can do any other processing you want here because you're not stuck in a while loop waiting for an interrupt
+}

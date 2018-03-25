@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Spinner_3Neurons.ino" />
+    <None Include="statemachine.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Spinner_3Neurons.vsarduino.h">
