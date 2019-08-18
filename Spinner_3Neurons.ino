@@ -2,7 +2,7 @@
 Dekatron Pendulum Example
 
 modified March 25, 2017
-by Michael Moorrees
+by Michael Moorrees f
 */
 
 int D_count = 0;
