@@ -2,7 +2,7 @@
 Dekatron Spinner Example
 
 modified March 25, 2017
-by Michael Moorrees
+by Michael Moorrees f
 */
 
 
