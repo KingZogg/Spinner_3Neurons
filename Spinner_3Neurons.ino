@@ -22,29 +22,29 @@ int Guide1A = 11;       // Guide 1 - G1 pin of 2-guide Dekatron
 int Guide2A = 12;       // Guide 2 - G2 pin of 2-guide Dekatron
 int IndexA = 13;        // Index   - NDX input pin. High when glow at K0 A
 
-int Guide1B = 8;       // Guide 1 - G1 pin of 2-guide Dekatron
-int Guide2B = 9;       // Guide 2 - G2 pin of 2-guide Dekatron
+int Guide1B = 9;       // Guide 1 - G1 pin of 2-guide Dekatron
+int Guide2B = 8;       // Guide 2 - G2 pin of 2-guide Dekatron
 int IndexB = 10;        // Index   - NDX input pin. High when glow at K0 B
 
-int Guide1C = 5;       // Guide 1 - G1 pin of 2-guide Dekatron
-int Guide2C = 6;       // Guide 2 - G2 pin of 2-guide Dekatron
+int Guide1C = 6;       // Guide 1 - G1 pin of 2-guide Dekatron
+int Guide2C = 5;       // Guide 2 - G2 pin of 2-guide Dekatron
 int IndexC = 7;        // Index   - NDX input pin. High when glow at K0 C
 
-int Guide1D = 2;       // Guide 1 - G1 pin of 2-guide Dekatron
-int Guide2D = 3;       // Guide 2 - G2 pin of 2-guide Dekatron
+int Guide1D = 3;       // Guide 1 - G1 pin of 2-guide Dekatron
+int Guide2D = 2;       // Guide 2 - G2 pin of 2-guide Dekatron
 int IndexD = 4;        // Index   - NDX input pin. High when glow at K0 D
 
-int Guide1E = 22;       // Guide 1 - G1 pin of 2-guide Dekatron
-int Guide2E = 23;       // Guide 2 - G2 pin of 2-guide Dekatron
+int Guide1E = 23;       // Guide 1 - G1 pin of 2-guide Dekatron
+int Guide2E = 22;       // Guide 2 - G2 pin of 2-guide Dekatron
 int IndexE = 24;        // Index   - NDX input pin. High when glow at K0 E
 
 int Guide1F = 26;       // Guide 1 - G1 pin of 2-guide Dekatron
 int Guide2F = 25;       // Guide 2 - G2 pin of 2-guide Dekatron
 int IndexF = 27;        // Index   - NDX input pin. High when glow at K0 F
 
-int Guide1G =32;       // Guide 1 - G1 pin of 2-guide Dekatron
-int Guide2G =33;       // Guide 2 - G2 pin of 2-guide Dekatron
-int IndexG = 31;        // Index   - NDX input pin. High when glow at K0 G
+int Guide1G =29;       // Guide 1 - G1 pin of 2-guide Dekatron
+int Guide2G =28;       // Guide 2 - G2 pin of 2-guide Dekatron
+int IndexG = 30;        // Index   - NDX input pin. High when glow at K0 G
 
 int Guide1H = 32;       // Guide 1 - G1 pin of 2-guide Dekatron
 int Guide2H = 31;       // Guide 2 - G2 pin of 2-guide Dekatron
@@ -338,6 +338,17 @@ void loop() {
 	Ndx = digitalRead(IndexB);
 	Ndx = digitalRead(IndexC);
 	Ndx = digitalRead(IndexD);
+	Ndx = digitalRead(IndexE);			// Sample for glow at K0
+	Ndx = digitalRead(IndexF);
+	Ndx = digitalRead(IndexG);
+	Ndx = digitalRead(IndexH);
+	Ndx = digitalRead(IndexI);			// Sample for glow at K0
+	Ndx = digitalRead(IndexJ);
+	Ndx = digitalRead(IndexK);
+	Ndx = digitalRead(IndexL);
+	Ndx = digitalRead(IndexM);			// Sample for glow at K0
+	
+
 
 
 	if (Ndx) digitalWrite(LED, HIGH);
