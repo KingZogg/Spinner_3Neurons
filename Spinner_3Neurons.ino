@@ -380,8 +380,8 @@ void loop() {
 
 
 
-	if (Ndx) digitalWrite(LED, HIGH);
-	if (!Ndx) digitalWrite(LED, LOW);
+	//if (Ndx) digitalWrite(LED, HIGH);
+	//if (!Ndx) digitalWrite(LED, LOW);
 	if (Ndx && state == 0)        // If yes, and state = 0,
 	{
 		state = 1;            // then, set to state 1 to ignore Ndx for 5mS        
@@ -415,7 +415,7 @@ void loop() {
 	}
 
 
-	if (Counter >= 1500) //if (Ndx)Acceleration = Acceleration + pow(2, Acceleration); // if you use 200  (or 50 with flip on) as the counter size it's an interesting effect.
+	if (Counter >= 500) 
 	{
 		Counter = 0;
 		Acceleration = 0;
